@@ -1,0 +1,56 @@
+type CompanyAdded @entity(immutable: true) {
+  id: Bytes!
+  id: BigInt! # uint256
+  name: String! # string
+  ticker: String! # string
+  dataHash: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CompanyDataEdited @entity(immutable: true) {
+  id: Bytes!
+  id: BigInt! # uint256
+  dataHash: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CompanyEdited @entity(immutable: true) {
+  id: Bytes!
+  id: BigInt! # uint256
+  name: String! # string
+  ticker: String! # string
+  dataHash: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CompanyNameEdited @entity(immutable: true) {
+  id: Bytes!
+  id: BigInt! # uint256
+  name: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CompanyTickerEdited @entity(immutable: true) {
+  id: Bytes!
+  id: BigInt! # uint256
+  ticker: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Initialized @entity(immutable: true) {
+  id: Bytes!
+  version: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
