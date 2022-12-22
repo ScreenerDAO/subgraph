@@ -1,0 +1,40 @@
+specVersion: 0.0.5
+features:
+  - fullTextSearch
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Registries
+    network: goerli
+    source:
+      address: "0xA32378239DE1dA367C4f7341F9E3355a76B7246e"
+      abi: Registries
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - CompanyAdded
+        - CompanyDataEdited
+        - CompanyEdited
+        - CompanyNameEdited
+        - CompanyTickerEdited
+        - Initialized
+      abis:
+        - name: Registries
+          file: Registries/abis/Registries.json
+      eventHandlers:
+        - event: CompanyAdded(uint256,string,string,string)
+          handler: handleCompanyAdded
+        - event: CompanyDataEdited(uint256,string)
+          handler: handleCompanyDataEdited
+        - event: CompanyEdited(uint256,string,string,string)
+          handler: handleCompanyEdited
+        - event: CompanyNameEdited(uint256,string)
+          handler: handleCompanyNameEdited
+        - event: CompanyTickerEdited(uint256,string)
+          handler: handleCompanyTickerEdited
+        - event: Initialized(uint8)
+          handler: handleInitialized
+      file: Registries/Registries.wasm
