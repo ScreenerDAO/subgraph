@@ -42,6 +42,15 @@ export class Company extends Entity {
     this.set("id", Value.fromString(value));
   }
 
+  get iId(): BigInt {
+    let value = this.get("iId");
+    return value!.toBigInt();
+  }
+
+  set iId(value: BigInt) {
+    this.set("iId", Value.fromBigInt(value));
+  }
+
   get name(): string {
     let value = this.get("name");
     return value!.toString();
@@ -67,5 +76,64 @@ export class Company extends Entity {
 
   set dataHash(value: string) {
     this.set("dataHash", Value.fromString(value));
+  }
+}
+
+export class Event extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Event entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type Event must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("Event", id.toString(), this);
+    }
+  }
+
+  static load(id: string): Event | null {
+    return changetype<Event | null>(store.get("Event", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get companyId(): BigInt {
+    let value = this.get("companyId");
+    return value!.toBigInt();
+  }
+
+  set companyId(value: BigInt) {
+    this.set("companyId", Value.fromBigInt(value));
+  }
+
+  get blockTimestamp(): BigInt {
+    let value = this.get("blockTimestamp");
+    return value!.toBigInt();
+  }
+
+  set blockTimestamp(value: BigInt) {
+    this.set("blockTimestamp", Value.fromBigInt(value));
+  }
+
+  get eventType(): string {
+    let value = this.get("eventType");
+    return value!.toString();
+  }
+
+  set eventType(value: string) {
+    this.set("eventType", Value.fromString(value));
   }
 }
