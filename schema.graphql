@@ -8,9 +8,17 @@ type _Schema_
 
 type Company @entity {
     id: String!
+    iId: BigInt!
     name: String!
     ticker: String!,
     dataHash: String!
+}
+
+type Event @entity {
+    id: String!
+    companyId: BigInt!
+    blockTimestamp: BigInt!
+    eventType: String!
 }
 
 # type CompanyAdded @entity(immutable: true) {
